@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		<context:property-placeholder location="classpath:db.properties" />
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.it.dao"></context:component-scan>
+	<context:component-scan base-package="com.it.entities"></context:component-scan>
+	<context:component-scan base-package="com.it.services.impl"></context:component-scan>
+	<bean  name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"
+	p:driver="${jdbc.driver}"
+	p:url="${jdbc.db.url}"
+	p:username="${jdbc.userName}"
+	p:password="${jdbc.password}"
+	p:initialSize="${jdbc.initSize}"
+	p:minIdle="${jdbc.minIdle}" 
+	p:maxActive="${jdbc.maxActive}"
+	p:filters="config"
+	p:connectionProperties="config.decrypt=true;config.decrypt.key=${jdbc.publickey}" >
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+	p:dataSource-ref="dataSource"
+	p:hibernateProperties="">
+	
+	</bean>
+<!-- 1、<property name="connectionProperties" value="config.decrypt=true" />  
+作用：配置ConfigFilter解密密码  
+2、<property name="filters" value="config" />  
+作用：提示Druid数据源需要对数据库密码进行解密   -->
+</beans>
