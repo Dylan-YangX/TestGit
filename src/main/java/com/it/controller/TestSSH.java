@@ -17,5 +17,5 @@ public class TestSSH {
 	}
 public void init(){}
 public void dev(){}
-
+public void t(){}
 }
