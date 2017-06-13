@@ -16,5 +16,6 @@ public class TestSSH {
 		System.out.println("Init testSSH...");
 	}
 public void init(){}
+public void dev(){}
 
 }
