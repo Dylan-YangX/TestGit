@@ -19,5 +19,5 @@ public void init(){}
 public void dev(){}
 public void t(){}
 public void tt(){
-System.out.rintln(asd)}
+System.out.rintln(asd)asd}
 }
